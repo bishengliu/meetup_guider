@@ -14,6 +14,6 @@ namespace MeetupGuilder.Entities.Models
         public int RsvpId { get; set; }
         public string Event { get; set; }
         public int EventId { get; set; }
-        public long mtime { get; set; }
+        public long Mtime { get; set; }
     }
 }

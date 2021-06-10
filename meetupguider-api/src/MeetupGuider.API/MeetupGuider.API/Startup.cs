@@ -1,3 +1,4 @@
+using MeetupGuider.API.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +26,24 @@ namespace MeetupGuider.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options
+                => options
+                .SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            // db
+            services.RegisterDbContext(Configuration);
+
+            // register meetup guider services
+
+            // cors
+            services.ConfigureCors();
+
+            // health check
+            services
+                .AddHealthChecks()
+                .AddSqlServer(Configuration["MeetupGuiderDb:ConnectionString"]);
+            // Swagger generator
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +58,14 @@ namespace MeetupGuider.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Meetup Guider API V1");
+                c.RoutePrefix = string.Empty;
+            });
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
