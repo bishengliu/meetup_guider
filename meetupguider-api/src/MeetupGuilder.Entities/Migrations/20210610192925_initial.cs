@@ -7,7 +7,7 @@ namespace MeetupGuilder.Entities.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "RSVP",
+                name: "RSVPs",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -23,14 +23,14 @@ namespace MeetupGuilder.Entities.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RSVP", x => x.Id);
+                    table.PrimaryKey("PK_RSVPs", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RSVP");
+                name: "RSVPs");
         }
     }
 }

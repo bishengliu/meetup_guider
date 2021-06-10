@@ -34,7 +34,7 @@ namespace MeetupGuider.API
             services.RegisterDbContext(Configuration);
 
             // register meetup guider services
-
+            services.RegisterMeetupGuidereServices();
             // cors
             services.ConfigureCors();
 

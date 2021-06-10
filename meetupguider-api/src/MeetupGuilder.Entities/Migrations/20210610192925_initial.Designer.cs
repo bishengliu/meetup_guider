@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeetupGuilder.Entities.Migrations
 {
     [DbContext(typeof(MeetupGuiderDbContext))]
-    [Migration("20210610185937_initial")]
+    [Migration("20210610192925_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace MeetupGuilder.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RSVP");
+                    b.ToTable("RSVPs");
                 });
 #pragma warning restore 612, 618
         }

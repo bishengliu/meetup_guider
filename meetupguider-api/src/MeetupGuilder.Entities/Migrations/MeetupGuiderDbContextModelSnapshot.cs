@@ -51,7 +51,7 @@ namespace MeetupGuilder.Entities.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RSVP");
+                    b.ToTable("RSVPs");
                 });
 #pragma warning restore 612, 618
         }
