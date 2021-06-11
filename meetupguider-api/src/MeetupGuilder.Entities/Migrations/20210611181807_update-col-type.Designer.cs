@@ -3,14 +3,16 @@ using MeetupGuilder.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MeetupGuilder.Entities.Migrations
 {
     [DbContext(typeof(MeetupGuiderDbContext))]
-    partial class MeetupGuiderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210611181807_update-col-type")]
+    partial class updatecoltype
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
