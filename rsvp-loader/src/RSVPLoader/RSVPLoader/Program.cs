@@ -17,7 +17,7 @@ namespace RSVPLoader
                 .CreateConfigurationBuilder()
                 .Build();
 
-            string connectionString = "server=.;database=warehouse;User ID=app;password=app;";
+            string connectionString = "server=.;database=meetup_guider;User ID=app;password=app;";
 
             var serviceProvider = new ServiceCollection()
                 .AddScoped<RSVPHelper>()

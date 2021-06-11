@@ -1,4 +1,5 @@
 ﻿using MeetupGuilder.Entities;
+using MeetupGuilder.Entities.Models;
 using RSVPLoader.MeetupGuider.Spark.Services;
 using System;
 using System.Collections.Generic;
@@ -36,15 +37,44 @@ namespace RSVPLoader
                 try
                 {
                     Console.WriteLine(reader.ReadLine());
-                    RSVP result = JsonSerializer.Deserialize<RSVP>(reader.ReadLine(), _options);
-                    var group = repoContext.RSVPGroups.FirstOrDefault();
-                    Console.WriteLine(group.City);
-
+                    RSVP rsvp = JsonSerializer.Deserialize<RSVP>(reader.ReadLine(), _options);
+                    var group = MapRSVP(rsvp);
+                    await repoContext.RSVPGroups.AddAsync(group);
+                    await repoContext.SaveChangesAsync();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }
+        }
+
+
+        public RSVPGroup MapRSVP(RSVP rsvp)
+        {
+            var topics = new List<GroupTopic>();
+            foreach (var item in rsvp.Group.Group_topics)
+            {
+                topics.Add(new GroupTopic()
+                {
+                    GroupId = rsvp.Group.Group_id,
+                    UrlKey = item.Urlkey,
+                    TopicName = item.Topic_name
+                });
+            }
+            RSVPGroup group = new RSVPGroup()
+            {
+                GroupId = rsvp.Group.Group_id,
+                Country = rsvp.Group.Group_country,
+                City = rsvp.Group.Group_city,
+                Lon = rsvp.Group.Group_lon,
+                Lat = rsvp.Group.Group_lat,
+                RsvpId = rsvp.Rsvp_id,
+                Event = rsvp.Event.Event_name,
+                EventId = rsvp.Event.Event_id,
+                Mtime = rsvp.Mtime,
+                Topics = topics
+            };
+            return group;
         }
     }
 }
