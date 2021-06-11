@@ -33,26 +33,17 @@ namespace MeetupGuider.API.Controllers
         }
 
         /// <summary>
-        /// get all the rsvps by city/location
+        /// get rsvps by city overview
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<IGrouping<string, RSVPGroup>> GetRSVPs() => _guiderService.GetRSVPs().GroupBy(c => c.City).OrderByDescending(t => t.Count());
-
-        /// <summary>
-        /// get all the rsvps of a country the city located
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("{city}")]
-        public IEnumerable<RSVPGroup> GetRSVPsByCity(string city) => _guiderService.GetRSVPsByCity(city);
+        public IEnumerable<RSVPCity> GetRSVPCityOverview() => _guiderService.GetRSVPCities();
 
         /// <summary>
         /// get topics of a country
         /// </summary>
-        /// <param name="country"></param>
         /// <returns></returns>
-        [HttpPost]
-        public IEnumerable<IGrouping<string, GroupTopic>> GetRSVPsByCountry(string country) => _guiderService.GetRSVPTopicsByContry(country).GroupBy(t => t.TopicName)
-            .OrderByDescending(t => t.Count());
+        [HttpGet("{country}")]
+        public IEnumerable<CountryTopic> GetCountryTopicByCountry(string country) => _guiderService.GetCountryTopicByCountry(country);
     }
 }

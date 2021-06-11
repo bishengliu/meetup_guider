@@ -9,24 +9,17 @@ namespace MeetupGuilder.Services
     public interface IGuiderService
     {
         /// <summary>
-        /// get all the rsvps
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<RSVPGroup> GetRSVPs();
-
-        /// <summary>
-        /// get rsvps of a country by city
-        /// </summary>
-        /// <param name="city"></param>
-        /// <returns></returns>
-        IEnumerable<RSVPGroup> GetRSVPsByCity(string city);
-
-        /// <summary>
-        /// get rsvps of a country
+        /// get all topics of a contry
         /// </summary>
         /// <param name="country"></param>
         /// <returns></returns>
-        IEnumerable<GroupTopic> GetRSVPTopicsByContry(string country);
+        IEnumerable<CountryTopic> GetCountryTopicByCountry(string country);
+
+        /// <summary>
+        /// get rsvps city overviews
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<RSVPCity> GetRSVPCities();
 
     }
 }

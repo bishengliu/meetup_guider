@@ -9,7 +9,7 @@ namespace MeetupGuilder.Entities.Models
     [Table("RSVPCities")]
     public class RSVPCity
     {
-        public int GroupId { get; set; }
+        public long GroupId { get; set; }
         public string Country { get; set; }
         [Key]
         public string City { get; set; }
