@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeetupGuider.Spark", "MeetupGuider.Spark\MeetupGuider.Spark.csproj", "{81666003-35F7-4233-B062-EC95DDF42B4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81666003-35F7-4233-B062-EC95DDF42B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81666003-35F7-4233-B062-EC95DDF42B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81666003-35F7-4233-B062-EC95DDF42B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81666003-35F7-4233-B062-EC95DDF42B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8489F61C-6C3B-4EF6-A0E2-75550A492A63}
+	EndGlobalSection
+EndGlobal
