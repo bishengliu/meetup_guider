@@ -37,13 +37,13 @@ namespace MeetupGuider.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IEnumerable<RSVP> GetRSVPs() => _guiderService.GetRSVPs();
+        public IEnumerable<RSVPGroup> GetRSVPs() => _guiderService.GetRSVPs();
 
         /// <summary>
         /// get all the rsvps of a country the city located
         /// </summary>
         /// <returns></returns>
         [HttpGet("{city}")]
-        public IEnumerable<RSVP> GetRSVPsByCity(string city) => _guiderService.GetRSVPsByCity(city);
+        public IEnumerable<RSVPGroup> GetRSVPsByCity(string city) => _guiderService.GetRSVPsByCity(city);
     }
 }

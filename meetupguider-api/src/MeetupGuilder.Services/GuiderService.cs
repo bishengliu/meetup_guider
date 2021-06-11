@@ -19,11 +19,11 @@ namespace MeetupGuilder.Services
             _logger = logger;
         }
 
-        public IEnumerable<RSVP> GetRSVPs() => _repoContext.RSVPs;
+        public IEnumerable<RSVPGroup> GetRSVPs() => _repoContext.RSVPGroups;
 
-        public IEnumerable<RSVP> GetRSVPsByCity(string city) => 
+        public IEnumerable<RSVPGroup> GetRSVPsByCity(string city) => 
             _repoContext
-            .RSVPs
+            .RSVPGroups
             .Where(c => c.City.ToLower() == city.ToLower());
     }
 }

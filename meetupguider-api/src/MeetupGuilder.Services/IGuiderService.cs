@@ -11,13 +11,13 @@ namespace MeetupGuilder.Services
         /// get all the rsvps
         /// </summary>
         /// <returns></returns>
-        IEnumerable<RSVP> GetRSVPs();
+        IEnumerable<RSVPGroup> GetRSVPs();
 
         /// <summary>
         /// get rsvps of a country by city
         /// </summary>
         /// <param name="city"></param>
         /// <returns></returns>
-        IEnumerable<RSVP> GetRSVPsByCity (string city);
+        IEnumerable<RSVPGroup> GetRSVPsByCity (string city);
     }
 }
