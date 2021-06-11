@@ -18,6 +18,31 @@ namespace MeetupGuilder.Entities.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MeetupGuilder.Entities.Models.CountryTopic", b =>
+                {
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Lon")
+                        .HasColumnType("real");
+
+                    b.Property<int>("TopicCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TopicName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Country");
+
+                    b.ToTable("CountryTopics");
+                });
+
             modelBuilder.Entity("MeetupGuilder.Entities.Models.GroupTopic", b =>
                 {
                     b.Property<int>("Id")
@@ -39,6 +64,37 @@ namespace MeetupGuilder.Entities.Migrations
                     b.HasIndex("GroupId");
 
                     b.ToTable("GroupTopics");
+                });
+
+            modelBuilder.Entity("MeetupGuilder.Entities.Models.RSVPCity", b =>
+                {
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CityCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EventId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Lat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Lon")
+                        .HasColumnType("real");
+
+                    b.Property<int>("RsvpId")
+                        .HasColumnType("int");
+
+                    b.HasKey("City");
+
+                    b.ToTable("RSVPCities");
                 });
 
             modelBuilder.Entity("MeetupGuilder.Entities.Models.RSVPGroup", b =>
