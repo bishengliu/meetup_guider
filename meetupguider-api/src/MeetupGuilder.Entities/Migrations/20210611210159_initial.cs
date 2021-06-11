@@ -27,7 +27,7 @@ namespace MeetupGuilder.Entities.Migrations
                 columns: table => new
                 {
                     City = table.Column<string>(nullable: false),
-                    GroupId = table.Column<int>(nullable: false),
+                    GroupId = table.Column<long>(nullable: false),
                     Country = table.Column<string>(nullable: true),
                     CityCount = table.Column<int>(nullable: false),
                     Lat = table.Column<float>(nullable: false),

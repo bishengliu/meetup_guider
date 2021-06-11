@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeetupGuilder.Entities.Migrations
 {
     [DbContext(typeof(MeetupGuiderDbContext))]
-    [Migration("20210611203529_initial")]
+    [Migration("20210611210159_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,8 +82,8 @@ namespace MeetupGuilder.Entities.Migrations
                     b.Property<string>("EventId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
+                    b.Property<long>("GroupId")
+                        .HasColumnType("bigint");
 
                     b.Property<float>("Lat")
                         .HasColumnType("real");
