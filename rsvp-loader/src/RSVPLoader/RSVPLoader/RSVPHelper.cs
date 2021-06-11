@@ -38,16 +38,17 @@ namespace RSVPLoader
                 {
                     Console.WriteLine(reader.ReadLine());
                     RSVP rsvp = JsonSerializer.Deserialize<RSVP>(reader.ReadLine(), _options);
+
+                    // save to db
                     var group = MapRSVP(rsvp);
-                    await repoContext.RSVPGroups.AddAsync(group);
-                    await repoContext.SaveChangesAsync();
+                    repoContext.RSVPGroups.Add(group);
+                    repoContext.SaveChanges();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }
         }
-
 
         public RSVPGroup MapRSVP(RSVP rsvp)
         {
@@ -56,7 +57,6 @@ namespace RSVPLoader
             {
                 topics.Add(new GroupTopic()
                 {
-                    GroupId = rsvp.Group.Group_id,
                     UrlKey = item.Urlkey,
                     TopicName = item.Topic_name
                 });
