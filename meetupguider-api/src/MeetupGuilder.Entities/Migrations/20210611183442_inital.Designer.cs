@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MeetupGuilder.Entities.Migrations
 {
     [DbContext(typeof(MeetupGuiderDbContext))]
-    [Migration("20210611181807_update-col-type")]
-    partial class updatecoltype
+    [Migration("20210611183442_inital")]
+    partial class inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -59,11 +59,11 @@ namespace MeetupGuilder.Entities.Migrations
                     b.Property<string>("Event")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
+                    b.Property<string>("EventId")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
+                    b.Property<long>("GroupId")
+                        .HasColumnType("bigint");
 
                     b.Property<float>("Lat")
                         .HasColumnType("real");

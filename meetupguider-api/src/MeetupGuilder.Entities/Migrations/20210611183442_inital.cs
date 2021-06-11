@@ -12,14 +12,14 @@ namespace MeetupGuilder.Entities.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GroupId = table.Column<int>(nullable: false),
+                    GroupId = table.Column<long>(nullable: false),
                     Country = table.Column<string>(nullable: true),
                     City = table.Column<string>(nullable: true),
-                    Lon = table.Column<decimal>(nullable: false),
-                    Lat = table.Column<decimal>(nullable: false),
+                    Lon = table.Column<float>(nullable: false),
+                    Lat = table.Column<float>(nullable: false),
                     RsvpId = table.Column<int>(nullable: false),
                     Event = table.Column<string>(nullable: true),
-                    EventId = table.Column<int>(nullable: false),
+                    EventId = table.Column<string>(nullable: true),
                     Mtime = table.Column<long>(nullable: false)
                 },
                 constraints: table =>
@@ -28,37 +28,36 @@ namespace MeetupGuilder.Entities.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GroupTopic",
+                name: "GroupTopics",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GroupId = table.Column<int>(nullable: false),
                     UrlKey = table.Column<string>(nullable: true),
-                    TopicName = table.Column<string>(nullable: true),
-                    RSVPGroupId = table.Column<int>(nullable: true)
+                    TopicName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GroupTopic", x => x.Id);
+                    table.PrimaryKey("PK_GroupTopics", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_GroupTopic_RSVPGroups_RSVPGroupId",
-                        column: x => x.RSVPGroupId,
+                        name: "FK_Group_Topics",
+                        column: x => x.GroupId,
                         principalTable: "RSVPGroups",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_GroupTopic_RSVPGroupId",
-                table: "GroupTopic",
-                column: "RSVPGroupId");
+                name: "IX_GroupTopics_GroupId",
+                table: "GroupTopics",
+                column: "GroupId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GroupTopic");
+                name: "GroupTopics");
 
             migrationBuilder.DropTable(
                 name: "RSVPGroups");
