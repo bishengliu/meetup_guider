@@ -3,14 +3,16 @@ using MeetupGuilder.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MeetupGuilder.Entities.Migrations
 {
     [DbContext(typeof(MeetupGuiderDbContext))]
-    partial class MeetupGuiderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210611181402_update-migration")]
+    partial class updatemigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,11 +65,11 @@ namespace MeetupGuilder.Entities.Migrations
                     b.Property<int>("GroupId")
                         .HasColumnType("int");
 
-                    b.Property<float>("Lat")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Lat")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<float>("Lon")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Lon")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<long>("Mtime")
                         .HasColumnType("bigint");

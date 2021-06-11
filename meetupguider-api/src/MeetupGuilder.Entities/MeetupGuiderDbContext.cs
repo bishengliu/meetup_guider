@@ -14,9 +14,10 @@ namespace MeetupGuilder.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new RSVPGroupBuilder());
-
+            modelBuilder.ApplyConfiguration(new GroupTopicBuilder());
         }
 
         public virtual DbSet<RSVPGroup> RSVPGroups { get; set; }
+        public virtual DbSet<GroupTopic> GroupTopics { get; set; }
     }
 }
