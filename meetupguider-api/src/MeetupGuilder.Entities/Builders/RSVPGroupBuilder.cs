@@ -7,9 +7,9 @@ using System.Text;
 
 namespace MeetupGuilder.Entities.Builders
 {
-    public class RSVPBuilder: IEntityTypeConfiguration<RSVP>
+    public class RSVPGroupBuilder: IEntityTypeConfiguration<RSVPGroup>
     {
-        public void Configure(EntityTypeBuilder<RSVP> builder)
+        public void Configure(EntityTypeBuilder<RSVPGroup> builder)
         {
             builder.HasKey(b => b.Id);
         }
