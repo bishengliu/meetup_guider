@@ -19,5 +19,8 @@ namespace MeetupGuilder.Entities
 
         public virtual DbSet<RSVPGroup> RSVPGroups { get; set; }
         public virtual DbSet<GroupTopic> GroupTopics { get; set; }
+
+        public virtual DbSet<RSVPCity> RSVPCities { get; set; }
+        public virtual DbSet<CountryTopic> CountryTopics { get; set; }
     }
 }

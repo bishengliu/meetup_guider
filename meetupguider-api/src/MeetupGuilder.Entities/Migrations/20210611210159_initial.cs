@@ -2,10 +2,44 @@
 
 namespace MeetupGuilder.Entities.Migrations
 {
-    public partial class inital : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "CountryTopics",
+                columns: table => new
+                {
+                    Country = table.Column<string>(nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    Lon = table.Column<float>(nullable: false),
+                    Lat = table.Column<float>(nullable: false),
+                    TopicName = table.Column<string>(nullable: true),
+                    TopicCount = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CountryTopics", x => x.Country);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RSVPCities",
+                columns: table => new
+                {
+                    City = table.Column<string>(nullable: false),
+                    GroupId = table.Column<long>(nullable: false),
+                    Country = table.Column<string>(nullable: true),
+                    CityCount = table.Column<int>(nullable: false),
+                    Lat = table.Column<float>(nullable: false),
+                    Lon = table.Column<float>(nullable: false),
+                    RsvpId = table.Column<int>(nullable: false),
+                    EventId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RSVPCities", x => x.City);
+                });
+
             migrationBuilder.CreateTable(
                 name: "RSVPGroups",
                 columns: table => new
@@ -57,7 +91,13 @@ namespace MeetupGuilder.Entities.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "CountryTopics");
+
+            migrationBuilder.DropTable(
                 name: "GroupTopics");
+
+            migrationBuilder.DropTable(
+                name: "RSVPCities");
 
             migrationBuilder.DropTable(
                 name: "RSVPGroups");

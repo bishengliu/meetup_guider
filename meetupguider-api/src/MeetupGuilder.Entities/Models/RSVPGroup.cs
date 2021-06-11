@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace MeetupGuilder.Entities.Models
@@ -21,6 +22,7 @@ namespace MeetupGuilder.Entities.Models
         public string EventId { get; set; }
         public long Mtime { get; set; }
 
+        [IgnoreDataMember]
         public virtual ICollection<GroupTopic> Topics { get; set; }
     }
 }

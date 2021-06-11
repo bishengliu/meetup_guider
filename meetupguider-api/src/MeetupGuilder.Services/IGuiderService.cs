@@ -1,6 +1,7 @@
 ﻿using MeetupGuilder.Entities.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MeetupGuilder.Services
@@ -8,16 +9,17 @@ namespace MeetupGuilder.Services
     public interface IGuiderService
     {
         /// <summary>
-        /// get all the rsvps
+        /// get all topics of a contry
         /// </summary>
+        /// <param name="country"></param>
         /// <returns></returns>
-        IEnumerable<RSVPGroup> GetRSVPs();
+        IEnumerable<CountryTopic> GetCountryTopicByCountry(string country);
 
         /// <summary>
-        /// get rsvps of a country by city
+        /// get rsvps city overviews
         /// </summary>
-        /// <param name="city"></param>
         /// <returns></returns>
-        IEnumerable<RSVPGroup> GetRSVPsByCity (string city);
+        IEnumerable<RSVPCity> GetRSVPCities();
+
     }
 }
