@@ -25,5 +25,12 @@ namespace MeetupGuilder.Services
             _repoContext
             .RSVPGroups
             .Where(c => c.City.ToLower() == city.ToLower());
+
+        public IEnumerable<GroupTopic> GetRSVPTopicsByContry(string country) =>
+            _repoContext
+            .RSVPGroups
+            .Where(c => c.Country.ToLower() == country.ToLower())
+            .SelectMany(c=>c.Topics)
+            ;
     }
 }
