@@ -57,11 +57,11 @@ namespace MeetupGuilder.Entities.Migrations
                     b.Property<string>("Event")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EventId")
-                        .HasColumnType("int");
+                    b.Property<string>("EventId")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
+                    b.Property<long>("GroupId")
+                        .HasColumnType("bigint");
 
                     b.Property<float>("Lat")
                         .HasColumnType("real");
