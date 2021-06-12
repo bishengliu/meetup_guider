@@ -8,12 +8,13 @@ function cleanMap(): void {
   }
 }
 
-function drawMap(countryData: MapData, bubbleData: any): void {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+function drawMap(id: string, countryData: MapData, bubbleData: any, displayTrendingTopics: any): void {
   // clean up if already rendered
   cleanMap();
 
   const myMap = new Datamap({
-    element: document.getElementById('basic_choropleth'),
+    element: document.getElementById(id),
     projection: 'mercator',
     scope: 'world',
     responsive: true,
@@ -40,28 +41,7 @@ function drawMap(countryData: MapData, bubbleData: any): void {
         );
       },
     },
-    data: countryData || {
-      USA: {
-        fillKey: 'color0',
-        count: 1900,
-      },
-      CHN: {
-        fillKey: 'color0',
-        count: 1700,
-      },
-      JPN: {
-        fillKey: 'color0',
-        count: 1930,
-      },
-      AUS: {
-        fillKey: 'color0',
-        count: 1350,
-      },
-      IND: {
-        fillKey: 'color0',
-        count: 1500,
-      },
-    },
+    data: countryData,
   });
 
   // Manage responsiveness
@@ -77,6 +57,15 @@ function drawMap(countryData: MapData, bubbleData: any): void {
         );
       },
     });
+  onClick(displayTrendingTopics);
+}
+
+function onClick(displayTrendingTopics: any) {
+  const nodes = document.getElementsByClassName('datamaps-subunit');
+  for (let i = 0; i < nodes.length; i += 1) {
+    const node = nodes[i];
+    node.addEventListener('click', () => displayTrendingTopics(node.classList[1]));
+  }
 }
 
 const MapService = {

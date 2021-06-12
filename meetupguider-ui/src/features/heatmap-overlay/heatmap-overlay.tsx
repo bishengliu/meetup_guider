@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './heatmap-overlay.css';
 // @ts-ignore
-import Datamap from 'datamaps/dist/datamaps.world.hires.min.js';
 import AppState from '../../redux/app-state';
-import HeatmapService from './services/heatmap-service';
 import MapDataService from './services/mapdata-service';
 import MapService from './services/map-service';
 import { getRSVPCitiesActionCreatorAsync, getCountryTopicsActionCreatorAsync } from './redux/actions/action-creators';
@@ -21,7 +19,7 @@ const HeatmapOverlay = (): JSX.Element => {
     setIsLoaded(true);
   };
 
-  const loadCountryTopics = () => dispatch(getCountryTopicsActionCreatorAsync('nl'));
+  const loadCountryTopics = (country: string) => dispatch(getCountryTopicsActionCreatorAsync(country.substring(0, 2)));
 
   if (!isLoaded) {
     loadRSVPCities();
@@ -31,7 +29,7 @@ const HeatmapOverlay = (): JSX.Element => {
     setcountryData(MapDataService.getMapData(heatmapState.rsvpCities));
     setbubbleData(MapDataService.getBubbleData(heatmapState.rsvpCities));
 
-    MapService.drawMap(countryData, bubbleData);
+    MapService.drawMap('basic_choropleth', countryData, bubbleData, loadCountryTopics);
   }, [heatmapState]);
 
   return (
