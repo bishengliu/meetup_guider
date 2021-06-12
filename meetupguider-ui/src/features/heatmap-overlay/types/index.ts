@@ -5,6 +5,7 @@ import { MapData as MyMapData, MapDataCountry as MyMapDataCountry, CountryCode a
 export type MapData = MyMapData;
 export type MapDataCountry = MyMapDataCountry;
 export type CountryCode = MyCountryCode;
+
 export {
   RSVPCity,
   CountryTopic,
