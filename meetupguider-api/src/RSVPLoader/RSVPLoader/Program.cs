@@ -47,6 +47,7 @@ namespace RSVPLoader
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
                 .AddJsonFile("appsettings.json", false)
+                .AddEnvironmentVariables()
                 .Build();
 
             // Add access to generic IConfigurationRoot
