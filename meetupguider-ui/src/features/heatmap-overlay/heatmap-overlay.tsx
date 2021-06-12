@@ -19,6 +19,7 @@ const HeatmapOverlay = (): JSX.Element => {
     setIsLoaded(true);
   };
 
+  // load trending topics by country
   const loadCountryTopics = (country: string) => dispatch(getCountryTopicsActionCreatorAsync(country.substring(0, 2)));
 
   if (!isLoaded) {

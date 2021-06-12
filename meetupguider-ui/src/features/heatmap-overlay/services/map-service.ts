@@ -2,6 +2,7 @@
 import Datamap from 'datamaps/dist/datamaps.world.hires.min.js';
 import { MapData } from '../types';
 
+// remove svg map
 function cleanMap(): void {
   if (document.getElementsByTagName('svg') !== undefined && document.getElementsByTagName('svg').length > 0) {
     document.getElementsByTagName('svg')[0].remove();
@@ -60,6 +61,7 @@ function drawMap(id: string, countryData: MapData, bubbleData: any, displayTrend
   onClick(displayTrendingTopics);
 }
 
+// add map click event
 function onClick(displayTrendingTopics: any) {
   const nodes = document.getElementsByClassName('datamaps-subunit');
   for (let i = 0; i < nodes.length; i += 1) {
@@ -68,6 +70,7 @@ function onClick(displayTrendingTopics: any) {
   }
 }
 
+// export service
 const MapService = {
   cleanMap,
   drawMap,

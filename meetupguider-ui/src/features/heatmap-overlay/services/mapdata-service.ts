@@ -15,7 +15,7 @@ const colors = [
   'color9',
 ];
 
-// get color
+// get color name
 function getColor(num : number) {
   if (num <= 10) {
     return colors[0];
