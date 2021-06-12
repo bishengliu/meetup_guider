@@ -8,6 +8,14 @@ const HeatmapOverlay = (): JSX.Element => {
   const dispatch = useDispatch();
   const heatmapState = useSelector((state: AppState) => state.heatmapState);
 
+  const loadRSVPCities = () => dispatch(getRSVPCitiesActionCreatorAsync());
+  // const loadCountryTopics = () => dispatch(getCountryTopicsActionCreatorAsync('nl'));
+  if (!isLoaded) {
+    loadRSVPCities();
+    setIsLoaded(true);
+    console.log(heatmapState.rsvpCities);
+  }
+
   return (
     <div>heapmap-overlay</div>
   );

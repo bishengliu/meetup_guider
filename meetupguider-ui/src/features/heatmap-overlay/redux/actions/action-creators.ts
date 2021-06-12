@@ -5,7 +5,7 @@ import { SetRSVPCitiesAction, SetCountryTopicsAction } from './actions';
 import store from '../../../../redux/store';
 import HeatmapService from '../../services/heatmap-service';
 
-const getRSVPCitiesActionCreatorAsync = (dispatch: typeof store.dispatch): void => {
+const getRSVPCitiesActionCreatorAsync = () => (dispatch: typeof store.dispatch): void => {
   HeatmapService
     .getRSVPCities()
     .then((res) => dispatch(getRSVPCitiesActionCreator(res.data)));
