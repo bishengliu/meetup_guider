@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { MapData, RSVPCity, CountryCode } from '../types';
 
@@ -336,9 +337,11 @@ const toMapData = (rsvpCities: RSVPCity[]) => {
 
 // to generate bubble data array
 const getBubbleData = (rsvpCities: RSVPCity[]): any => rsvpCities.map((d: RSVPCity) => toBubbleData(d));
+
 // get map country data
 const getMapData = (rsvpCities: RSVPCity[]): any => toMapData(rsvpCities);
 
+// export service
 const MapDataService = {
   getBubbleData,
   getMapData,

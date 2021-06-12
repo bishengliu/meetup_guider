@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // @ts-ignore
 import Datamap from 'datamaps/dist/datamaps.world.hires.min.js';
 import { MapData } from '../types';
@@ -58,11 +59,11 @@ function drawMap(id: string, countryData: MapData, bubbleData: any, displayTrend
         );
       },
     });
-  onClick(displayTrendingTopics);
+  bindClickEvent(displayTrendingTopics);
 }
 
 // add map click event
-function onClick(displayTrendingTopics: any) {
+function bindClickEvent(displayTrendingTopics: any) {
   const nodes = document.getElementsByClassName('datamaps-subunit');
   for (let i = 0; i < nodes.length; i += 1) {
     const node = nodes[i];

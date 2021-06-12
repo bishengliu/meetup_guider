@@ -20,6 +20,7 @@ const HeatmapOverlay = (): JSX.Element => {
   };
 
   // load trending topics by country
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const loadCountryTopics = (country: string) => dispatch(getCountryTopicsActionCreatorAsync(country.substring(0, 2)));
 
   if (!isLoaded) {
@@ -31,7 +32,7 @@ const HeatmapOverlay = (): JSX.Element => {
     setbubbleData(MapDataService.getBubbleData(heatmapState.rsvpCities));
 
     MapService.drawMap('basic_choropleth', countryData, bubbleData, loadCountryTopics);
-  }, [heatmapState]);
+  }, [bubbleData, countryData, heatmapState, loadCountryTopics]);
 
   return (
     <div>
