@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSVPLoader", "RSVPLoader\RSVPLoader.csproj", "{9C4BE021-115E-4255-AD1A-8B5AA21224A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RSVPLoader", "RSVPLoader\RSVPLoader.csproj", "{9C4BE021-115E-4255-AD1A-8B5AA21224A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupGuilder.Entities", "..\..\..\meetupguider-api\src\MeetupGuilder.Entities\MeetupGuilder.Entities.csproj", "{2F6DBC1B-21EE-46EE-A8BE-FEBA1BC991B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeetupGuilder.Entities", "..\MeetupGuilder.Entities\MeetupGuilder.Entities.csproj", "{F397C357-45D9-448E-9844-4F32A0F5646F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{9C4BE021-115E-4255-AD1A-8B5AA21224A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C4BE021-115E-4255-AD1A-8B5AA21224A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C4BE021-115E-4255-AD1A-8B5AA21224A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F6DBC1B-21EE-46EE-A8BE-FEBA1BC991B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F6DBC1B-21EE-46EE-A8BE-FEBA1BC991B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F6DBC1B-21EE-46EE-A8BE-FEBA1BC991B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F6DBC1B-21EE-46EE-A8BE-FEBA1BC991B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F397C357-45D9-448E-9844-4F32A0F5646F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F397C357-45D9-448E-9844-4F32A0F5646F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F397C357-45D9-448E-9844-4F32A0F5646F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F397C357-45D9-448E-9844-4F32A0F5646F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

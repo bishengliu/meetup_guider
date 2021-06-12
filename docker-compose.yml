@@ -1,18 +1,18 @@
 version: "3"
 
 services:
-  # meetup-guider-loader:
-  #   container_name: meetup-guider-loader
-  #   build:
-  #     context: .
-  #     dockerfile: ./dockerfiles/loader.Dockerfile
-  #   depends_on:
-  #     - meetup-guider-api
-  #     - meetup-guider-mssql-db
-  #   env_file:
-  #     - ./dockerfiles/demo.env
-  #   networks:
-  #     - meetup-guider-network
+  meetup-guider-loader:
+    container_name: meetup-guider-loader
+    build:
+      context: .
+      dockerfile: ./dockerfiles/loader.Dockerfile
+    depends_on:
+      - meetup-guider-api
+      - meetup-guider-mssql-db
+    env_file:
+      - ./dockerfiles/demo.env
+    networks:
+      - meetup-guider-network
 
   meetup-guider-api:
     container_name: meetup-guider-api
