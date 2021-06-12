@@ -36,7 +36,8 @@
 		"global-require": 0,
 		"eslint linebreak-style": [0, "error", "windows"],
 		"no-param-reassign": [2, { "props": false }],
-		"no-console": "off"
+		"no-console": "off",
+        "@typescript-eslint/ban-ts-comment": 0
     },
 	"settings": {
 		"import/resolver": {
