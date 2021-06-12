@@ -7,7 +7,7 @@ WORKDIR /src
 
 COPY ["./meetupguider-api/src/RSVPLoader/", "RSVPLoader/"]
 COPY ["./meetupguider-api/src/MeetupGuilder.Entities", "MeetupGuilder.Entities/"]
-COPY ./rsvp-loader/src/RSVPLoader/RSVPLoader.sln .
+COPY ./meetupguider-api/src/RSVPLoader/RSVPLoader.sln .
 
 RUN dotnet restore "RSVPLoader/RSVPLoader/RSVPLoader.csproj"
 COPY . .
