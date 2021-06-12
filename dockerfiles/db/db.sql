@@ -1,3 +1,47 @@
+if db_id('meetup_guider') is null
+	CREATE DATABASE [meetup_guider]
+GO
+
+USE [meetup_guider]
+GO
+
+CREATE TABLE [dbo].[RSVPGroups](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[GroupId] [bigint] NOT NULL,
+	[Country] [nvarchar](max) NULL,
+	[City] [nvarchar](max) NULL,
+	[Lon] [real] NOT NULL,
+	[Lat] [real] NOT NULL,
+	[RsvpId] [int] NOT NULL,
+	[Event] [nvarchar](max) NULL,
+	[EventId] [nvarchar](max) NULL,
+	[Mtime] [bigint] NOT NULL,
+ CONSTRAINT [PK_RSVPGroups] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[GroupTopics](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[GroupId] [int] NOT NULL,
+	[UrlKey] [nvarchar](max) NULL,
+	[TopicName] [nvarchar](max) NULL,
+ CONSTRAINT [PK_GroupTopics] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[GroupTopics]  WITH CHECK ADD  CONSTRAINT [FK_Group_Topics] FOREIGN KEY([GroupId])
+REFERENCES [dbo].[RSVPGroups] ([Id])
+GO
+
+ALTER TABLE [dbo].[GroupTopics] CHECK CONSTRAINT [FK_Group_Topics]
+GO
+
 -- create a view for cities stat
 CREATE VIEW RSVPCities AS
 
@@ -30,6 +74,7 @@ LEFT JOIN
 ON b.City = c.City;
 
 
+Go
 
 -- CREATE VIEW FOR COUNTRY TRENDING TOPICS
 

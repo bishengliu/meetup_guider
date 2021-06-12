@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  meetup-guider-loader:
+    container_name: meetup-guider-loader
+    build:
+      context: .
+      dockerfile: ./dockerfiles/loader.Dockerfile
+    depends_on:
+      - meetup-guider-api
+      - meetup-guider-mssql-db
+    env_file:
+      - ./dockerfiles/demo.env
+    networks:
+      - meetup-guider-network
+
+  meetup-guider-api:
+    container_name: meetup-guider-api
+    build:
+      context: .
+      dockerfile: ./dockerfiles/api.Dockerfile
+    depends_on:
+      - meetup-guider-mssql-db
+    env_file:
+      - ./dockerfiles/demo.env
+    ports:
+      - "8080:8080"
+    networks:
+      - meetup-guider-network
+
+  meetup-guider-mssql-db:
+   container_name: meetup-guider-mssql-db
+   restart: always
+   build:
+     context: .
+     dockerfile: ./dockerfiles/mssql.Dockerfile
+   environment:
+     - ACCEPT_EULA=Y
+     - SA_PASSWORD=P@ssw0rd
+     - MSSQL_PID=Express
+   ports:
+     - "1433:1433"
+   networks:
+     - meetup-guider-network
+  
+  # meetup-guider-ui:
+  #   container_name: meetup-guider-ui
+  #   build:
+  #     context: .
+  #     dockerfile: ./dockerfiles/ui.Dockerfile
+  #   depends_on: 
+  #     - meetup-guider-api
+  #   ports: 
+  #     - "80:80"
+  #   networks: 
+  #     - meetup-guider-network
+  
+networks:
+  meetup-guider-network:
+    name: meetup-guider-network
