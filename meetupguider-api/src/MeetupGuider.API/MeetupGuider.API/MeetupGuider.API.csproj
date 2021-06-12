@@ -19,5 +19,8 @@
     <ProjectReference Include="..\..\MeetupGuilder.Services\MeetupGuilder.Services.csproj" />
   </ItemGroup>
 
-
+   <ItemGroup>
+    <None Include="appsettings.Production.json" CopyToPublishDirectory="Always" />
+	<None Include="appsettings.json" CopyToPublishDirectory="Always" />
+  </ItemGroup>
 </Project>
