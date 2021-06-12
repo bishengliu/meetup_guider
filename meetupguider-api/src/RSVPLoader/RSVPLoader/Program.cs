@@ -12,36 +12,57 @@ namespace RSVPLoader
     {
         static void Main(string[] args)
         {
-            //prepare DI
-            var configuration = StandaloneConfigurationBuilder
-                .CreateConfigurationBuilder()
-                .Build();
+            // create serice provider
+            var serviceProvider = ConfigureServiceProvider();
 
-            string connectionString = "server=.;database=meetup_guider;User ID=app;password=app;";
+            //create scope
+            using var scope = serviceProvider.CreateScope();
 
-            var serviceProvider = new ServiceCollection()
-                .AddScoped<RSVPHelper>()
-                .AddDbContext<MeetupGuiderDbContext>(o =>
-                    o.UseLazyLoadingProxies()
-                    .UseSqlServer(connectionString))
-                .BuildServiceProvider();
+            // db context
+            using var repoContext = scope.ServiceProvider.GetRequiredService<MeetupGuiderDbContext>();
 
-            // load services
-            using var scope = 
-                serviceProvider
-                .CreateScope();
-
-            using var repoContext = 
-                scope.ServiceProvider
-                .GetRequiredService<MeetupGuiderDbContext>();
-
-            var rsvpHelper = 
-                scope
-                .ServiceProvider
-                .GetService<RSVPHelper>();
+            // rsvp loader
+            var rsvpService = scope.ServiceProvider.GetService<RSVPService>();
 
             //retrieve and save rsvps
-            _ = rsvpHelper.RetrieveRSVPs(repoContext);
+            _ = rsvpService.RetrieveRSVPs(repoContext);
+
+        }
+
+        private static ServiceProvider ConfigureServiceProvider()
+        {
+            // create service collection
+            var serviceCollection = new ServiceCollection();
+            // add services
+            ConfigureServices(serviceCollection);
+            // create serice provider
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+            return serviceProvider;
+        }
+
+        // configure services
+        private static void ConfigureServices(IServiceCollection serviceCollection)
+        {
+            // build configuration
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+                .AddJsonFile("appsettings.json", false)
+                .Build();
+
+            // Add access to generic IConfigurationRoot
+            serviceCollection.AddSingleton<IConfigurationRoot>(configuration);
+
+            // connect db
+            string connectionString = configuration.GetValue<string>("MeetupGuiderDb:ConnectionString");
+
+            Console.WriteLine(connectionString);
+
+            // inject services
+            serviceCollection
+                .AddScoped<RSVPService>()
+                .AddDbContext<MeetupGuiderDbContext>(o =>
+                    o.UseLazyLoadingProxies()
+                    .UseSqlServer(connectionString));
 
         }
     }

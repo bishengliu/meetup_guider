@@ -13,15 +13,14 @@ using System.Threading.Tasks;
 
 namespace RSVPLoader
 {
-    public class RSVPHelper
+    public class RSVPService
     {
         private const string meetupUrl = "https://stream.meetup.com/2/rsvps";
         private readonly JsonSerializerOptions _options;
 
-        public RSVPHelper()
+        public RSVPService()
         {
-            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true, IgnoreNullValues = true };
-            
+            _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true, IgnoreNullValues = true };           
         }
         public async Task RetrieveRSVPs(MeetupGuiderDbContext repoContext)
         {
@@ -37,6 +36,8 @@ namespace RSVPLoader
                 try
                 {
                     Console.WriteLine(reader.ReadLine());
+
+                    // deserialize
                     RSVP rsvp = JsonSerializer.Deserialize<RSVP>(reader.ReadLine(), _options);
 
                     // save to db
