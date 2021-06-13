@@ -35,7 +35,7 @@ namespace RSVPLoader
             while (!reader.EndOfStream)
                 try
                 {
-                    Console.WriteLine(reader.ReadLine());
+                    // Console.WriteLine(reader.ReadLine());
 
                     // deserialize
                     RSVP rsvp = JsonSerializer.Deserialize<RSVP>(reader.ReadLine(), _options);
