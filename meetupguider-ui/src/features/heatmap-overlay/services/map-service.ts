@@ -15,7 +15,7 @@ function drawMap(id: string, countryData: MapData, bubbleData: any, displayTrend
   // clean up if already rendered
   cleanMap();
 
-  const myMap = new Datamap({
+  const guiderMap = new Datamap({
     element: document.getElementById(id),
     projection: 'mercator',
     scope: 'world',
@@ -48,10 +48,10 @@ function drawMap(id: string, countryData: MapData, bubbleData: any, displayTrend
 
   // Manage responsiveness
   window.addEventListener('resize', () => {
-    myMap.resize();
+    guiderMap.resize();
   });
   // configure bubbles
-  myMap.bubbles(bubbleData || [],
+  guiderMap.bubbles(bubbleData || [],
     {
       popupTemplate(geo: any, data: any) {
         return (
