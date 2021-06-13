@@ -300,10 +300,10 @@ const countryCodes: CountryCode = {
   MZ: 'MOZ',
 };
 
-// convert country codes: 2letters -> 3 letters
+// convert country codes: 2 letters -> 3 letters
 const convertContryCode = (country: string) => countryCodes[country.toUpperCase()];
 
-// mapdata bubbule data
+// mapdata bubbule data, turns rsvp data to map bubble data
 const toBubbleData = (rsvpCity: RSVPCity) => ({
   name: rsvpCity.city,
   country: convertContryCode(rsvpCity.country),
@@ -314,7 +314,7 @@ const toBubbleData = (rsvpCity: RSVPCity) => ({
   fillKey: getColor(rsvpCity.cityCount),
 });
 
-// generate map contry data
+// generate map country data
 const toMapData = (rsvpCities: RSVPCity[]) => {
   const mapData: MapData = {};
   for (let i = 0; i < rsvpCities.length; i += 1) {
@@ -328,8 +328,8 @@ const toMapData = (rsvpCities: RSVPCity[]) => {
         topics: [],
       };
     } else {
-      mapData[country].count += rsvpCity.cityCount;
-      mapData[country].fillKey = getColor(mapData[country].count);
+      mapData[country].count += rsvpCity.cityCount; // sum up the count
+      mapData[country].fillKey = getColor(mapData[country].count); // get color by count
     }
   }
   return mapData;

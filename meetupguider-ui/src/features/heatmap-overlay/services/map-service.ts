@@ -55,7 +55,7 @@ function drawMap(id: string, countryData: MapData, bubbleData: any, displayTrend
     {
       popupTemplate(geo: any, data: any) {
         return (
-          `<div class="hoverinfo">${data.name}<br /> rsvp:${data.count}`
+          `<div class="hoverinfo">${data.name} - rsvp:${data.count}`
         );
       },
     });
@@ -64,9 +64,12 @@ function drawMap(id: string, countryData: MapData, bubbleData: any, displayTrend
 
 // add map click event
 function bindClickEvent(displayTrendingTopics: any) {
+  // get all the path nodes by class name
   const nodes = document.getElementsByClassName('datamaps-subunit');
   for (let i = 0; i < nodes.length; i += 1) {
     const node = nodes[i];
+
+    // add click event and pass country name being clicked to the call back function
     node.addEventListener('click', () => { console.log(node.classList[1]); displayTrendingTopics(node.classList[1]); });
   }
 }
