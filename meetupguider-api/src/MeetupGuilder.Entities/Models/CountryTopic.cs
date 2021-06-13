@@ -9,7 +9,7 @@ namespace MeetupGuilder.Entities.Models
     [Table("CountryTopics")]
     public class CountryTopic
     {
-        [Key]
+        public int Id { get; set; }
         public string Country { get; set; }
         public string City { get; set; }
         public float Lon { get; set; }
