@@ -9,9 +9,9 @@ namespace MeetupGuilder.Entities.Models
     [Table("RSVPCities")]
     public class RSVPCity
     {
+        public int Id { get; set; }
         public long GroupId { get; set; }
         public string Country { get; set; }
-        [Key]
         public string City { get; set; }
         public int CityCount { get; set; }
         public float Lat { get; set; }

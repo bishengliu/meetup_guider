@@ -46,7 +46,8 @@ GO
 CREATE VIEW RSVPCities AS
 
 SELECT 
-  b.GroupId
+b.Id
+, b.GroupId
 , b.Country
 , b.City
 , c.CityCount
@@ -81,8 +82,8 @@ Go
 CREATE VIEW CountryTopics AS
 
 SELECT 
-
-c.Country
+d.Id
+, c.Country
 , c.City
 , c.Lat
 , c.Lon
@@ -94,7 +95,7 @@ FROM RSVPGroups AS c
 
 LEFT JOIN  
 
-	(SELECT a.GroupId, a.TopicName, b.TopicCount
+	(SELECT a.Id, a.GroupId, a.TopicName, b.TopicCount
 
 
 		FROM
