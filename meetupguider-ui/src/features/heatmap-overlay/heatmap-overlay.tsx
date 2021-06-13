@@ -11,28 +11,24 @@ const HeatmapOverlay = (): JSX.Element => {
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useDispatch();
   const heatmapState = useSelector((state: AppState) => state.heatmapState);
-  const [countryData, setcountryData] = useState({});
-  const [bubbleData, setbubbleData] = useState([]);
 
-  const loadRSVPCities = () => {
-    dispatch(getRSVPCitiesActionCreatorAsync());
-    setIsLoaded(true);
-  };
-
-  // load trending topics by country
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const loadCountryTopics = (country: string) => dispatch(getCountryTopicsActionCreatorAsync(country.substring(0, 2)));
+  // dispatch rsvps
+  const loadRSVPCities = () => dispatch(getRSVPCitiesActionCreatorAsync());
 
   if (!isLoaded) {
     loadRSVPCities();
+    setIsLoaded(true);
   }
 
   useEffect(() => {
-    setcountryData(MapDataService.getMapData(heatmapState.rsvpCities));
-    setbubbleData(MapDataService.getBubbleData(heatmapState.rsvpCities));
+    // load country trending topics
+    const loadCountryTopics = (country: string) => dispatch(getCountryTopicsActionCreatorAsync(country.substring(0, 2)));
 
-    MapService.drawMap('basic_choropleth', countryData, bubbleData, loadCountryTopics);
-  }, [bubbleData, countryData, heatmapState, loadCountryTopics]);
+    MapService.drawMap('basic_choropleth',
+      MapDataService.getMapData(heatmapState.rsvpCities),
+      MapDataService.getBubbleData(heatmapState.rsvpCities),
+      loadCountryTopics);
+  }, [dispatch, heatmapState.rsvpCities, isLoaded]);
 
   return (
     <div>

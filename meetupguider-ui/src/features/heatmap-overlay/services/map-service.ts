@@ -67,7 +67,7 @@ function bindClickEvent(displayTrendingTopics: any) {
   const nodes = document.getElementsByClassName('datamaps-subunit');
   for (let i = 0; i < nodes.length; i += 1) {
     const node = nodes[i];
-    node.addEventListener('click', () => displayTrendingTopics(node.classList[1]));
+    node.addEventListener('click', () => { console.log(node.classList[1]); displayTrendingTopics(node.classList[1]); });
   }
 }
 
