@@ -308,7 +308,7 @@ const toBubbleData = (rsvpCity: RSVPCity) => ({
   name: rsvpCity.city,
   country: convertContryCode(rsvpCity.country),
   count: rsvpCity.cityCount,
-  radius: 2,
+  radius: rsvpCity.cityCount <= 5 ? 2 : 5,
   latitude: rsvpCity.lat,
   longitude: rsvpCity.lon,
   fillKey: getColor(rsvpCity.cityCount),
