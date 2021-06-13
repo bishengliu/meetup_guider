@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+  Table, Container, Row, Col, Alert,
+} from 'react-bootstrap';
 import './heatmap-overlay.css';
 // @ts-ignore
 import AppState from '../../redux/app-state';
@@ -24,6 +27,7 @@ const HeatmapOverlay = (): JSX.Element => {
     // load country trending topics
     const loadCountryTopics = (country: string) => dispatch(getCountryTopicsActionCreatorAsync(country.substring(0, 2)));
 
+    // draw geo-heatmap
     MapService.drawMap('basic_choropleth',
       MapDataService.getMapData(heatmapState.rsvpCities),
       MapDataService.getBubbleData(heatmapState.rsvpCities),
@@ -32,14 +36,57 @@ const HeatmapOverlay = (): JSX.Element => {
 
   return (
     <div>
-      <div
-        id="basic_choropleth"
-        style={{ position: 'relative', width: 'auto%', height: '30%' }}
-        className="heatmap_guider"
-      />
-      {
-        heatmapState.rsvpCities.length === 0 && (<div>loading</div>)
-      }
+
+      <Container fluid>
+        <Row>
+          <Col>
+            { isLoaded && heatmapState.rsvpCities.length === 0 && (<div>loading</div>)}
+          </Col>
+        </Row>
+        <Row>
+          <Col xs lg="2">
+            { heatmapState.countryTopics.length > 0 && (
+            <div>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>Topic</th>
+                    <th>Count</th>
+                    <th>City</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+              heatmapState.countryTopics.map((ct) => (
+                <tr>
+                  <td>{ ct.topicName }</td>
+                  <td>{ ct.topicCount }</td>
+                  <td>{ ct.city }</td>
+                </tr>
+              ))
+            }
+                </tbody>
+              </Table>
+            </div>
+            )}
+            {
+              heatmapState.countryTopics.length === 0 && (
+                <Alert variant="light">click a country to load the trending topics.</Alert>
+              )
+            }
+          </Col>
+          <Col md="auto">
+            <div
+              id="basic_choropleth"
+              style={{ position: 'relative', width: 'auto%', height: '30%' }}
+              className="heatmap_guider"
+            />
+
+          </Col>
+
+        </Row>
+      </Container>
+
     </div>
 
   );
