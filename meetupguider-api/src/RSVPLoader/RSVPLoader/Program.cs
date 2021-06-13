@@ -25,6 +25,7 @@ namespace RSVPLoader
             var rsvpService = scope.ServiceProvider.GetService<RSVPService>();
 
             //retrieve and save rsvps
+            System.Threading.Thread.Sleep(10000);
             _ = rsvpService.RetrieveRSVPs(repoContext);
 
         }
