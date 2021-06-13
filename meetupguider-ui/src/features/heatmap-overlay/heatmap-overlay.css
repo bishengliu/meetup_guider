@@ -1,5 +1,11 @@
 .heatmap_guider {
     position: relative; 
     width: 900px; 
-    height: "10%";
+    height: "50%";
+    margin-top: 10em;
+    padding-top: 10em;
+}
+
+.guider_loading{
+    padding-top: 10em;
 }

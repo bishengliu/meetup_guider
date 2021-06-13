@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  Table, Container, Row, Col, Alert,
+  Table, Container, Row, Col, Alert, Spinner,
 } from 'react-bootstrap';
 import './heatmap-overlay.css';
 // @ts-ignore
@@ -36,18 +36,18 @@ const HeatmapOverlay = (): JSX.Element => {
 
   return (
     <div>
-
       <Container fluid>
         <Row>
           <Col>
-            { isLoaded && heatmapState.rsvpCities.length === 0 && (<div>loading</div>)}
+            { !isLoaded && heatmapState.rsvpCities.length === 0 && (
+            <div className="guider_loading"><Spinner animation="grow" variant="primary" /></div>)}
           </Col>
         </Row>
         <Row>
           <Col xs lg="2">
             { heatmapState.countryTopics.length > 0 && (
             <div>
-              <Table striped bordered hover>
+              <Table striped bordered hover size="sm" responsive>
                 <thead>
                   <tr>
                     <th>Topic</th>
@@ -57,38 +57,30 @@ const HeatmapOverlay = (): JSX.Element => {
                 </thead>
                 <tbody>
                   {
-              heatmapState.countryTopics.map((ct) => (
-                <tr>
-                  <td>{ ct.topicName }</td>
-                  <td>{ ct.topicCount }</td>
-                  <td>{ ct.city }</td>
-                </tr>
-              ))
-            }
+                    heatmapState.countryTopics.map((ct) => (
+                      <tr>
+                        <td>{ ct.topicName }</td>
+                        <td>{ ct.topicCount }</td>
+                        <td>{ ct.city }</td>
+                      </tr>
+                    ))
+                  }
                 </tbody>
               </Table>
             </div>
             )}
             {
-              heatmapState.countryTopics.length === 0 && (
-                <Alert variant="light">click a country to load the trending topics.</Alert>
+              isLoaded && heatmapState.countryTopics.length === 0 && (
+                <Alert variant="info">click a country to load the trending topics.</Alert>
               )
             }
           </Col>
           <Col md="auto">
-            <div
-              id="basic_choropleth"
-              style={{ position: 'relative', width: 'auto%', height: '30%' }}
-              className="heatmap_guider"
-            />
-
+            <div id="basic_choropleth" className="heatmap_guider" />
           </Col>
-
         </Row>
       </Container>
-
     </div>
-
   );
 };
 
