@@ -78,7 +78,7 @@ const HeatmapOverlay = (): JSX.Element => {
 
         {/* the geo-heatmap svg */}
         <Col md="auto">
-          <div id="basic_choropleth" className="heatmap_guider" />
+          <div id="basic_choropleth" className="heatmap_guider" data-testid="meetup-guider-heatmap" />
         </Col>
       </Row>
     </Container>
