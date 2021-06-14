@@ -4,7 +4,7 @@ import { Navbar } from 'react-bootstrap';
 import './navbar.css';
 
 const NavBar = ():JSX.Element => (
-  <Navbar bg="dark" variant="dark" expand="lg">
+  <Navbar bg="dark" variant="dark" expand="lg" data-testid="meetup-guider-navbarp">
     <Navbar.Brand as={Link} to="/" className="brand-padding">
       <i className="fa fa-map" />
       <span> Meetup Guider</span>
