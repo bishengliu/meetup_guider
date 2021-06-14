@@ -17,7 +17,7 @@ const colors = [
 ];
 
 // get color name
-function getColor(num : number) {
+function getColor(num : number): string {
   if (num <= 10) {
     return colors[0];
   } if (num <= 20) {
@@ -345,6 +345,10 @@ const getMapData = (rsvpCities: RSVPCity[]): any => toMapData(rsvpCities);
 const MapDataService = {
   getBubbleData,
   getMapData,
+  getColor,
+  convertContryCode,
+  toBubbleData,
+  toMapData,
 };
 
 export default MapDataService;

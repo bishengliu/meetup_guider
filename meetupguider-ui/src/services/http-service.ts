@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import axios, {
   AxiosInstance, AxiosRequestConfig, AxiosPromise, AxiosError, AxiosResponse,
 } from 'axios';
@@ -10,7 +11,7 @@ const client: AxiosInstance = axios.create({
 axiosRetry(client, {
   retries: 3, // number of retries
   retryDelay: (retryCount) => {
-    console.log(`retry attempt: ${retryCount}`);
+    // console.log(`retry attempt: ${retryCount}`);
     return retryCount * 2000; // time interval between retries
   },
 });
@@ -22,7 +23,7 @@ const redirectTo = (document: Document, path: string) => {
 
 // handle success
 const handleSuccess = (response: AxiosResponse) => {
-  console.debug('resquest successful!', response);
+  // console.log('resquest successful!', response);
   return response;
 };
 
