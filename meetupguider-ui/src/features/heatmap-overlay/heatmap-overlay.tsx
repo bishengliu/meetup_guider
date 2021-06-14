@@ -47,7 +47,7 @@ const HeatmapOverlay = (): JSX.Element => {
 
       <Row>
         {/* table displayed upon clicking on the country */}
-        <Col xs md="4">
+        <Col xs md="3">
           {
             isLoaded && heatmapState.countryTopics.length === 0 && (
             <Alert variant="info">click a country to load the trending topics.</Alert>)
