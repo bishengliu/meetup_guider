@@ -47,7 +47,7 @@ const HeatmapOverlay = (): JSX.Element => {
 
       <Row>
         {/* table displayed upon clicking on the country */}
-        <Col xs lg="2">
+        <Col xs md="4">
           {
             isLoaded && heatmapState.countryTopics.length === 0 && (
             <Alert variant="info">click a country to load the trending topics.</Alert>)
@@ -63,7 +63,7 @@ const HeatmapOverlay = (): JSX.Element => {
                 </tr>
               </thead>
               <tbody>
-                { heatmapState.countryTopics.map((ct) => (
+                { heatmapState.countryTopics.sort((a, b) => b.topicCount - a.topicCount).map((ct) => (
                   <tr>
                     <td>{ ct.topicName }</td>
                     <td>{ ct.topicCount }</td>
